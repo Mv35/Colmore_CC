@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+	<title>Autocomplete search for company</title>
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" crossorigin="anonymous"></script>
+	<script>
+		$(function() {
+            
+			$("#searchBox").autocomplete({
+				source : function(request, response) {
+					$.ajax({
+						type: "POST",
+						url : "http://localhost:5000/search",
+						dataType : "json",
+						cache: false,
+						data : {
+							query : request.term
+						},
+						success : function(data) {
+
+                            companies = []
+                            for (let key in data) {
+                                companies.push(data[key]['1. symbol'])
+
+                            console.log(companies);
+                            }
+							response(companies);
+                            
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							console.log(textStatus + " " + errorThrown);
+						}
+					});
+				},
+				minLength : 1
+                
+			});
+		});
+        
+	</script>
+</head>
+<body>
+
+		<h2>Search for a company</h2>
+
+            <label>Search Here</label>&nbsp;&nbsp;
+
+        <form action='/stats' method="POST">
+            <input type="text" name="search" id="searchBox">
+            <input type="submit" value="Check stats">
+        </form>
+
+</body>

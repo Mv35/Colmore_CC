@@ -1,18 +1,20 @@
-#Colmore Coding Challenge
+# Colmore Coding Challenge
 
+To genererate KEY:
+[Alphavantage API KEY](https://www.alphavantage.co/support/%23api-key)
 
-##Simple Flask Frontend with the following features:
-1. User provides its own (AlphaVenture) API key that is remembered for the session 
+## Simple Flask Frontend with the following features:
+1. User provides its own (AlphaVantage) API key that is remembered for the session 
 2. User can search specific company using
 https://www.alphavantage.co/documentation/#symbolsearch and display results that match selection criteria in select list.
 3. User can select a company from the list and display additional details in a table such as:
 symbol, name, type, region, marketOpen, marketClose, timezone, currency, matchScore
 
-###Requirements:
+### Requirements:
 * Python3.8 or
 * Docker
 
-###Instructions:
+### Instructions:
 #### With Virtual Environment
 * Clone or download the repo
 * Navigate inside `Colmore_CC` directory
@@ -22,7 +24,9 @@ symbol, name, type, region, marketOpen, marketClose, timezone, currency, matchSc
 * `python colmore/main.py`
 * Go to `http://localhost:5000`
 
-To run tests: `pytest -vs`
+
+To run package tests within virtual environment: 
+* `python -m pytest -vs`
 
 #### With Docker
 * `docker build . -t colmoretest`
